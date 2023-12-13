@@ -3,11 +3,16 @@ import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFo
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [NzFormModule, NzInputModule ,NzButtonModule, FormsModule, ReactiveFormsModule ],
+  imports: [NzFormModule, NzInputModule, NzButtonModule, FormsModule, ReactiveFormsModule, NzGridModule, NzTypographyModule, NzSpaceModule, RouterModule],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.sass'
 })
@@ -36,5 +41,5 @@ export class SignInComponent {
     }
   }
 
-  constructor(private fb: NonNullableFormBuilder) {}
+  constructor(private fb: NonNullableFormBuilder) { }
 }

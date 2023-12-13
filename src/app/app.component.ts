@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 @Component({
   selector: 'app-root',

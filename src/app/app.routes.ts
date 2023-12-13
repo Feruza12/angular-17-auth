@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { SignInComponent } from './features/auth/pages/sign-in/sign-in.component';
 import { authGuard } from './guards/auth.guard';
+import { SignInComponent } from './features/auth/pages/sign-in/sign-in.component';
 
 export const routes: Routes = [
-    // {path: 'sign-up', component: SignUpComponent},
-    { path: '', pathMatch: 'full', redirectTo: '/home' },
-    { path: 'auth', loadChildren: () => import('./features/auth/components/auth-wrapper/auth.routes').then(m => m.AUTH_ROUTES) },
-    { path: 'home', pathMatch: 'full', loadChildren: () => import('./shared/components/layout/layout.routes').then(m => m.LAYOUT_ROUTES), canLoad: [authGuard] },
+    { path: 'sign-in',  pathMatch: 'full', component: SignInComponent },
+    // { path: '', redirectTo: '/auth', pathMatch: 'full' },
+    // { path: 'auth', pathMatch: 'full', loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES) },
+    // { path: 'home', pathMatch: 'full', loadChildren: () => import('./shared/components/layout/layout.routes').then(m => m.LAYOUT_ROUTES), canLoad: [authGuard] },
 
     { path: '**', component: PageNotFoundComponent }
 ];

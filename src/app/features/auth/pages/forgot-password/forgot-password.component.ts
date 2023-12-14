@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -8,24 +9,18 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-forgot-password',
   standalone: true,
   imports: [NzFormModule, NzInputModule, NzButtonModule, FormsModule, ReactiveFormsModule, NzGridModule, NzTypographyModule, NzSpaceModule, RouterModule],
-  templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.sass'
+  templateUrl: './forgot-password.component.html',
+  styleUrl: './forgot-password.component.sass'
 })
-export class SignInComponent {
-
+export class ForgotPasswordComponent {
   validateForm: FormGroup<{
     email: FormControl<string>;
-    password: FormControl<string>;
-    remember: FormControl<boolean>;
   }> = this.fb.group({
     email: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    remember: [true]
   });
 
   submitForm(): void {

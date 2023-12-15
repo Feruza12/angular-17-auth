@@ -29,7 +29,6 @@
         </ul>
       </li>
     </ul>
-    <!-- <button nz-button nzType="default" nzBlock>Log out</button> -->
   </nz-sider>
   <nz-layout>
     <nz-header>
@@ -37,9 +36,12 @@
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
           <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
         </span>
-        <button nz-button nzType="primary" nzSize="default" class="logout-button" (click)="authService.logout()">          
-          Logout
-        </button>
+        <div class="right-section">
+          <h5 nz-typography>{{authService.user()?.email}}</h5>
+          <button nz-button nzType="primary" nzSize="default" class="logout-button" (click)="authService.logout()">          
+            Logout
+          </button>
+        </div>
       </div>
     </nz-header>
     <nz-content>

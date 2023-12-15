@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -7,7 +7,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -17,15 +18,24 @@ import { RouterModule } from '@angular/router';
   styleUrl: './forgot-password.component.sass'
 })
 export class ForgotPasswordComponent {
+  private router = inject(Router);
+  private authService = inject(AuthService)
+  private fb = inject(NonNullableFormBuilder)
+
   validateForm: FormGroup<{
     email: FormControl<string>;
   }> = this.fb.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.email, Validators.required]],
   });
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+      const email = this.validateForm.getRawValue().email
+      this.authService.resetPassword(email).subscribe({
+        next: ((res) => {
+          this.router.navigate(['/sign-in']);
+        })
+      })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -36,5 +46,11 @@ export class ForgotPasswordComponent {
     }
   }
 
-  constructor(private fb: NonNullableFormBuilder) { }
+  constructor() {
+    effect(() => {
+      if (this.authService.user()) {
+        this.router.navigate(['home']);
+      }
+    });
+  }
 }
